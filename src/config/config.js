@@ -16,4 +16,6 @@ export const {
     GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET,
     GITHUB_CALLBACK_URL,
+    ADMIN_EMAIL,
+    ADMIN_PASSWORD,
 } = process.env;

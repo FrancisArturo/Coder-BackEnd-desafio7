@@ -10,7 +10,14 @@ export default class ProductsManager {
             throw new Error("Error inserting products");
         }
     }
-            
+    getall = async () => {
+        try {
+            const result = await productsModel.find();
+            return result;
+        } catch (error) {
+            throw new Error("No products found");
+        }
+    }       
     getallProducts = async (limit, page, category, sort) => {
         try {
             if (category === "all") {

@@ -6,7 +6,8 @@ import  connectDB from "./db/mongo.config.js";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import initializePassport from "./config/passport.config.js";
-import { PORT, NODE_ENV, API_VERSION } from "./config/config.js"
+import { PORT, NODE_ENV, API_VERSION } from "./config/config.js";
+import cors from "cors";
 
 
 
@@ -46,7 +47,7 @@ export default class App {
         await connectDB();
     }
     initializeMiddlewares() {
-        //this.app.use(cors());
+        this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.static(__dirname + "/public"));
