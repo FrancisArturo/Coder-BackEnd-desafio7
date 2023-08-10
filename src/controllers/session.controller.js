@@ -94,4 +94,25 @@ export default class SessionController {
         const user = req.user;
         return res.json({message: "admin and user access", user})
     }
+
+    githubLoginController  = async (req, res) => {
+        try {
+            const userLogin = req.user;
+            const signUser = {
+                user: userLogin._id,
+                firstName: userLogin.firstName,
+                lastName: userLogin.lastName,
+                email: userLogin.email,
+                role: userLogin.role,
+            };
+            const token = generateJWT({...signUser});
+                console.log(token)
+                return res.cookie("cookieToken", token, {
+                    maxAge:60*60*1000,
+                    httpOnly: true
+                }).redirect('/views/home');
+        } catch (error) {
+            return res.status(400).json({ message: error.message });
+        }
+    }
 }
